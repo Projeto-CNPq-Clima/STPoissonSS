@@ -284,12 +284,20 @@ bayesSTWeibull<-function(data,sites,tau_breaks,Ftw,Ftm,G,Q,
       MbmT=c(MbmT,temp[[2]])
 
       S0est=solve(S0+acum0)
-      temp=solve(array(as.vector(rWishart(1, n0est, S0est)),dim=c(ncol(G[1,,]),ncol(G[1,,]))))
-      Vpsi=temp
+      tem1=tryCatch(solve(array(as.vector(rWishart(1, n0est, S0est)),dim=c(ncol(G),ncol(G)))) ,error = function(e) e)
+      if(is.matrix(tem1)==T){
+        Vpsi=solve(array(as.vector(rWishart(1, n0est, S0est)),dim=c(ncol(G),ncol(G))))
+      }else{
+
+      }
 
       S1est=solve(S1+acum1)
-      temp=solve(array(as.vector(rWishart(1, n1est, S1est)),dim=c(ncol(Q[1,,]),ncol(Q[1,,]))))
-      Vbta=temp
+      tem1=tryCatch(solve(array(as.vector(rWishart(1, n1est, S1est)),dim=c(ncol(Q),ncol(Q)))) ,error = function(e) e)
+      if(is.matrix(tem1)==T){
+        Vbta=solve(array(as.vector(rWishart(1, n1est, S1est)),dim=c(ncol(Q),ncol(Q))))
+      }else{
+
+      }
 
       if((i%%50)==0){
         SU3=sintonizar(burnin,0.44,SU3,MbwT,i)
@@ -451,13 +459,21 @@ bayesSTWeibull<-function(data,sites,tau_breaks,Ftw,Ftm,G,Q,
         Mbm=c(Mbm,bm)
 
         S0est=solve(S0+acum0)
-        temp=solve(array(as.vector(rWishart(1, n0est, S0est)),dim=c(ncol(G[1,,]),ncol(G[1,,]))))
-        Vpsi=temp
+        tem1=tryCatch(solve(array(as.vector(rWishart(1, n0est, S0est)),dim=c(ncol(G),ncol(G)))) ,error = function(e) e)
+        if(is.matrix(tem1)==T){
+          Vpsi=solve(array(as.vector(rWishart(1, n0est, S0est)),dim=c(ncol(G),ncol(G))))
+        }else{
+
+        }
         MVpsi=rbind(MVpsi,t(as.matrix(as.vector(Vpsi))))
 
         S1est=solve(S1+acum1)
-        temp=solve(array(as.vector(rWishart(1, n1est, S1est)),dim=c(ncol(Q[1,,]),ncol(Q[1,,]))))
-        Vbta=temp
+        tem1=tryCatch(solve(array(as.vector(rWishart(1, n1est, S1est)),dim=c(ncol(Q),ncol(Q)))) ,error = function(e) e)
+        if(is.matrix(tem1)==T){
+          Vbta=solve(array(as.vector(rWishart(1, n1est, S1est)),dim=c(ncol(Q),ncol(Q))))
+        }else{
+
+        }
         MVbta=rbind(MVbta,t(as.matrix(as.vector(Vbta))))
 
 
@@ -549,12 +565,20 @@ bayesSTWeibull<-function(data,sites,tau_breaks,Ftw,Ftm,G,Q,
         MbmT=c(MbmT,temp[[2]])
 
         S0est=solve(S0+acum0)
-        temp=solve(array(as.vector(rWishart(1, n0est, S0est)),dim=c(ncol(G[1,,]),ncol(G[1,,]))))
-        Vpsi=temp
+        tem1=tryCatch(solve(array(as.vector(rWishart(1, n0est, S0est)),dim=c(ncol(G),ncol(G)))) ,error = function(e) e)
+        if(is.matrix(tem1)==T){
+          Vpsi=solve(array(as.vector(rWishart(1, n0est, S0est)),dim=c(ncol(G),ncol(G))))
+        }else{
+
+        }
 
         S1est=solve(S1+acum1)
-        temp=solve(array(as.vector(rWishart(1, n1est, S1est)),dim=c(ncol(Q[1,,]),ncol(Q[1,,]))))
-        Vbta=temp
+        tem1=tryCatch(solve(array(as.vector(rWishart(1, n1est, S1est)),dim=c(ncol(Q),ncol(Q)))) ,error = function(e) e)
+        if(is.matrix(tem1)==T){
+          Vbta=solve(array(as.vector(rWishart(1, n1est, S1est)),dim=c(ncol(Q),ncol(Q))))
+        }else{
+
+        }
 
 
 
